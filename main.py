@@ -43,8 +43,14 @@ def main():
 
 
         updatable.update(dt)
+        player.timer -= dt
         
         for astr in asteroids:
+            for bullet in shots:
+                if astr.collision(bullet):
+                    astr.split()
+                    bullet.kill()
+            
             if astr.collision(player):
                 print("Game over")
                 sys.exit() 
